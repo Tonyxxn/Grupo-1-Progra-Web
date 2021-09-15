@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Propietarios:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Propietario</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="cpropietario" value="Id "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="cpropietario"
+				styleClass="form-control"
+				value="#{propietarioController.propietario.cpropietario}"
+				required="true" />
+				
+			<h:outputLabel for="npropietario"
+				value="Nombre Propietario " styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="ncategoria"
+				styleClass="form-control"
+				value="#{propietarioController.propietario.npropietario}"
+				maxlength="100" required="true" />
+			
+			<h:outputLabel for="napellido"
+				value="Apellido Propietario " styleClass="control-label" /> 
+
+			<p:inputText autocomplete="off" id="napellido"
+				styleClass="form-control"
+				value="#{propietarioController.propietario.napellido}"
+				maxlength="100" required="true" />
+				
+			<h:outputLabel for="correo"
+				value="Correo " styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="correo"
+				styleClass="form-control"
+				value="#{propietarioController.propietario.correo}" 
+				maxlength="200" required="true" />
+				
+			<h:outputLabel for="clave"
+				value="Clave " styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="clave"
+				styleClass="form-control"
+				value="#{propietarioController.propietario.clave}" 
+				maxlength="200" required="true" />
+				
+			<h:outputLabel for="CCategoria" value="Categoria " />
+			<p:selectOneMenu id="CCategoria"
+				value="#{propietarioController.propietario.categoria}"
+				converter="omnifaces.SelectItemsConverter">
+
+				<f:selectItems value="#{propietarioController.listacategorias}"
+					var="c" itemLabel="#{c.ncategoria}" itemValue="#{c}" />
+
+			</p:selectOneMenu>
+			
+
+			<br />
+			<p:commandButton value="Grabar"
+				actionListener="#{propietarioController.insertPropietario()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listPropietario?faces-redirect=true" /> 
+			<p:commandButton value="Cancelar"
+				action="listPropietario?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+
+
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>

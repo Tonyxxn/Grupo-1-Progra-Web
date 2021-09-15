@@ -5,6 +5,11 @@
 	<class>pe.edu.upc.Entities.Marca</class>
 	<class>pe.edu.upc.Entities.Modelo</class>
 	<class>pe.edu.upc.Entities.Vehiculo</class>
+	<class>pe.edu.upc.Entities.Departamento</class>
+	<class>pe.edu.upc.Entities.Provincia</class>
+	<class>pe.edu.upc.Entities.Categoria</class>
+	<class>pe.edu.upc.Entities.Propietario</class>
+	<class>pe.edu.upc.Entities.Estado</class>
 	<properties>
 			<property
 				name="javax.persistence.schema-generation.database.action"
