@@ -20,23 +20,31 @@
 	<ui:define name="content">
 
 		<h:form>
-			<div class="row">
-				<p:commandButton value="Nuevo"
-					action="#{vehiculoController.newVehiculo()}"
-					styleClass="btn btn-primary" ajax="false" />
-			</div>
-
-			<div class="row">
-				<div class="col-sm-12">
-					<div class="form-group table-responsive box-table-class">
-
-						<p:dataTable id="lstVehiculo" var="v"
-							value="#{vehiculoController.listaVehiculos}"
-							paginator="true" paginatorPosition="top"
-							rowsPerPageTemplate="10,20,30,40,50" rows="10"
-							styleClass="table table-bordered"
-							emptyMessage="No existen registros" rowIndexVar="item"
-							style="margin-bottom:0">
+			<div class="row"> <div class="col-sm-4"> <div
+				class="form-group"> <h:outputLabel for="name" value="Búsqueda"
+				styleClass="control-label" /> <p:inputText autocomplete="off"
+				id="name" styleClass="form-control"
+				value="#{vehiculoController.vehiculo.cplaca}"
+				maxlength="120" /> </div> </div> <div class="col-sm-8 text-right"> <div
+				class="form-group box-main-btn"> <span
+				style="display: block; height: 30px;"></span> <p:commandButton
+				value="Limpiar" update="lstInfectious"
+				actionListener="#{vehiculoController.clean()}"
+				styleClass="btn btn-default" ajax="false" /> <p:commandButton
+				value="Buscar" update="lstVehiculo"
+				actionListener="#{vehiculoController.buscarpornombre()}"
+				styleClass="btn btn-default btn-border" ajax="true" /> <p:commandButton
+				value="Nuevo" action="#{vehiculoController.newVehiculo()}"
+				styleClass="btn btn-danger" ajax="false" /> </div> </div> </div>
+			<div class="row"> <div class="col-sm-12"> <div
+				class="form-group table-responsive box-table-class"> <p:dataTable
+				id="lstVehiculo" var="v"
+				value="#{vehiculoController.listaVehiculos}"
+				paginator="true" paginatorPosition="top"
+				rowsPerPageTemplate="10,20,30,40,50" rows="10"
+				styleClass="table table-bordered"
+				emptyMessage="No existen registros" rowIndexVar="item"
+				style="margin-bottom:0">
 
 							<p:column headerText="Id" sortBy="#{v.cplaca}">
 								<h:outputText value="#{v.cplaca}" />
@@ -61,7 +69,37 @@
 								<h:outputText value="#{v.modelo.nmodelo}" />
 							</p:column>
 							
+							<p:column headerText="ID Propietario"
+								sortBy="#{v.propietario.cpropietario}">
+								<h:outputText value="#{v.propietario.cpropietario}" />
+							</p:column>
+							
+							<p:column headerText="Operación" exportable="false">
+							<h:commandLink action="listPowner" value="Eliminar"
+							actionListener="#{vehiculoController.eliminar(v)}" />
+							</p:column>
+							
+							<p:column headerText="Operación" exportable="false">
+
+							<h:commandLink value="Modificar"
+								action="#{vehiculoController.Modifpre(v)}"
+								style="color:blue;" />
+							</p:column>
+							
 						</p:dataTable>
+						
+						<h:commandLink>
+						<p:outputLabel value="ExportarExcel"></p:outputLabel>
+						<p:dataExporter type="xls" target="lstVehiculo" fileName="excelWeb"
+						pageOnly="false"></p:dataExporter>
+						</h:commandLink> 
+			
+						<br/>
+						<h:commandLink>
+						<p:outputLabel value="ExportarPdf"></p:outputLabel>
+						<p:dataExporter type="pdf" target="lstVehiculo" fileName="pdfWeb"></p:dataExporter>
+						</h:commandLink>
+						
 					</div>
 
 				</div>

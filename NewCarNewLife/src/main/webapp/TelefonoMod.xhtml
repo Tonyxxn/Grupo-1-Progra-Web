@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Telefonos:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Telefonos</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="ctelefonoprop" value="Id "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="ctelefonoprop"
+				styleClass="form-control"
+				value="#{telefonoPropietarioController.telprop.ctelefonoprop}"
+				required="true" />
+
+			<h:outputLabel for="ttelefono" value=" Telefono Propietario "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="ttelefono"
+				styleClass="form-control"
+				value="#{telefonoPropietarioController.telprop.ttelefono}"
+				maxlength="10" required="true" />
+
+			<h:outputLabel for="CPropietario" value="Propietario " />
+			<p:selectOneMenu id="CPropietario"
+				value="#{telefonoPropietarioController.telprop.cpropietario}"
+				converter="omnifaces.SelectItemsConverter">
+
+				<f:selectItems
+					value="#{telefonoPropietarioController.listapropietarios}" var="c"
+					itemLabel="#{c.npropietario} #{c.napellido}" itemValue="#{c}" />
+
+			</p:selectOneMenu>
+
+			<br />
+
+			<p:commandButton value="Grabar"
+				actionListener="#{telefonoPropietarioController.modificar()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listTelefono?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listTelefonoPropietario?faces-redirect=true"
+				immediate="true" styleClass="btn btn-default" ajax="false" />
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>

@@ -27,6 +27,25 @@ public class MarcaServiceImpl implements IMarcaService{
 		
 		return mDao.list();
 	}
+
+	@Override
+	public void eliminar(int Cmarca) {
+		// TODO Auto-generated method stub
+		mDao.eliminar(Cmarca);
+	}
+
+	@Override
+	public List<Marca> buscarpornombre(Marca ma) {
+		// TODO Auto-generated method stub
+		return mDao.buscapornombre(ma);
+	}
+
+	@Override
+	public void modificar(Marca ma) {
+		// TODO Auto-generated method stub
+		mDao.modificar(ma);
+		
+	}
 	
 	
 	

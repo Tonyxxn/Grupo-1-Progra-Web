@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Modelos:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Modelo</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="Cmodelo" value="Id "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="Cmodelo"
+				styleClass="form-control"
+				value="#{modeloController.modelo.cmodelo}"
+				required="true" />
+				
+			<h:outputLabel for="nameModelo"
+				value="Nombre Modelo " styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="nameModelo"
+				styleClass="form-control"
+				value="#{modeloController.modelo.nmodelo}"
+				maxlength="30" required="true" />
+			
+			<br />
+
+			<p:outputLabel for="cboMarca" value="Marca" />
+
+			<p:selectOneMenu id="cboMarca"
+
+				value="#{modeloController.modelo.marca}"
+
+				converter="omnifaces.SelectItemsConverter">
+
+				<f:selectItems value="#{modeloController.listaMarcas}" var="m"
+
+					itemLabel="#{m.nmarca}" itemValue="#{m}" />
+			</p:selectOneMenu>
+
+			<br />
+			
+			<br />
+			<p:commandButton value="Grabar"
+				actionListener="#{modeloController.modificar()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listModelo?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listModelo?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+
+
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>

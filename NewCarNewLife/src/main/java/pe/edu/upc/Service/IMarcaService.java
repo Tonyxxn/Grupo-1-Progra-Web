@@ -8,5 +8,11 @@ public interface IMarcaService {
 
 	public void insert(Marca ma);
 	
+	public void eliminar(int Cmarca);
+	
+	public void modificar(Marca ma);
+	
 	public List<Marca> list();
+	
+	public List<Marca> buscarpornombre(Marca ma);
 }

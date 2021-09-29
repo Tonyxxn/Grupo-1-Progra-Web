@@ -42,6 +42,48 @@ public class VehiculoDaoImpl implements IVehiculoDao{
 		}
 		return lista;
 	}
+
+	@Transactional
+	@Override
+	public void elminar(int Cplaca) {
+		// TODO Auto-generated method stub
+		Vehiculo veh = new Vehiculo();
+		try {
+			veh = em.getReference(Vehiculo.class, Cplaca);
+			em.remove(veh);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Error eliminar");
+		}
+	}
+
+	@Transactional
+	@Override
+	public void modificar(Vehiculo v) {
+		// TODO Auto-generated method stub
+		try {
+			em.merge(v);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Vehiculo> buscarpornombre(Vehiculo v) {
+		// TODO Auto-generated method stub
+		List<Vehiculo> lista = new ArrayList<Vehiculo>();
+		try {
+			Query q = em.createQuery("from Vehiculo v where v.Cplaca = ?1");
+			q.setParameter(1, v.getCplaca());
+			lista = (List<Vehiculo>) q.getResultList();
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+		return lista;
+	}
 	
 	
 }

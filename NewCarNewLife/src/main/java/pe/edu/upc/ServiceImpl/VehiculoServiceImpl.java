@@ -28,5 +28,23 @@ public class VehiculoServiceImpl implements IVehiculoService{
 		// TODO Auto-generated method stub
 		return vDao.list();
 	}
+
+	@Override
+	public void eliminar(int Cplaca) {
+		// TODO Auto-generated method stub
+		vDao.elminar(Cplaca);
+	}
+
+	@Override
+	public void modificar(Vehiculo v) {
+		// TODO Auto-generated method stub
+		vDao.modificar(v);
+	}
+
+	@Override
+	public List<Vehiculo> buscarpornombre(Vehiculo v) {
+		// TODO Auto-generated method stub
+		return vDao.buscarpornombre(v);
+	}
 	
 }

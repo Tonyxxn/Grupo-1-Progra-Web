@@ -42,6 +42,48 @@ public class ModeloDaoImpl implements IModeloDao{
 		}
 		return lista;
 	}
+
+	@Transactional
+	@Override
+	public void eliminar(int Cmodelo) {
+		// TODO Auto-generated method stub
+		Modelo mod= new Modelo();
+		try {
+			mod= em.getReference(Modelo.class, Cmodelo);
+			em.remove(mod);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Error al eliminar");
+		}
+	}
+
+	@Transactional
+	@Override
+	public void modificar(Modelo mo) {
+		// TODO Auto-generated method stub
+		try {
+			em.merge(mo);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Modelo> buscarpornombre(Modelo mo) {
+		// TODO Auto-generated method stub
+		List<Modelo> lista = new ArrayList<Modelo>();
+		try {
+			Query q =em.createQuery("from Modelo m where m.Nmodelo like ?1");
+			q.setParameter(1, "%" + mo.getNmodelo() + "%");
+			lista = (List<Modelo>) q.getResultList();
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+		return lista;
+	}
 	
 	
 	

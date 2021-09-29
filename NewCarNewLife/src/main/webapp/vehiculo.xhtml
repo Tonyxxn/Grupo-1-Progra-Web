@@ -53,7 +53,22 @@
 
 				<f:selectItems value="#{vehiculoController.listaModelos}" var="mo"
 
-					itemLabel="#{mo.nmodelo}" itemValue="#{m}" />
+					itemLabel="#{mo.nmodelo}" itemValue="#{mo}" />
+			</p:selectOneMenu>
+
+			<br />
+
+			<p:outputLabel for="cboPropietario" value="Propietario" />
+
+			<p:selectOneMenu id="cboPropietario"
+
+				value="#{vehiculoController.vehiculo.propietario}"
+
+				converter="omnifaces.SelectItemsConverter">
+
+				<f:selectItems value="#{vehiculoController.listaPropietarios}" var="p"
+
+					itemLabel="#{p.cpropietario}" itemValue="#{p}" />
 			</p:selectOneMenu>
 
 			<br />

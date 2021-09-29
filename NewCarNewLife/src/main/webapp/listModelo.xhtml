@@ -20,23 +20,31 @@
 	<ui:define name="content">
 
 		<h:form>
-			<div class="row">
-				<p:commandButton value="Nuevo"
-					action="#{modeloController.newModelo()}"
-					styleClass="btn btn-primary" ajax="false" />
-			</div>
-
-			<div class="row">
-				<div class="col-sm-12">
-					<div class="form-group table-responsive box-table-class">
-
-						<p:dataTable id="lstPerson" var="mo"
-							value="#{modeloController.listaModelos}"
-							paginator="true" paginatorPosition="top"
-							rowsPerPageTemplate="10,20,30,40,50" rows="10"
-							styleClass="table table-bordered"
-							emptyMessage="No existen registros" rowIndexVar="item"
-							style="margin-bottom:0">
+			<div class="row"> <div class="col-sm-4"> <div
+				class="form-group"> <h:outputLabel for="name" value="Búsqueda"
+				styleClass="control-label" /> <p:inputText autocomplete="off"
+				id="name" styleClass="form-control"
+				value="#{modeloController.modelo.nmodelo}"
+				maxlength="120" /> </div> </div> <div class="col-sm-8 text-right"> <div
+				class="form-group box-main-btn"> <span
+				style="display: block; height: 30px;"></span> <p:commandButton
+				value="Limpiar" update="lstInfectious"
+				actionListener="#{modeloController.clean()}"
+				styleClass="btn btn-default" ajax="false" /> <p:commandButton
+				value="Buscar" update="lstModelo"
+				actionListener="#{modeloController.buscarpornombre()}"
+				styleClass="btn btn-default btn-border" ajax="true" /> <p:commandButton
+				value="Nuevo" action="#{modeloController.newModelo()}"
+				styleClass="btn btn-danger" ajax="false" /> </div> </div> </div>
+			<div class="row"> <div class="col-sm-12"> <div
+				class="form-group table-responsive box-table-class"> <p:dataTable
+				id="lstModelo" var="mo"
+				value="#{modeloController.listaModelos}"
+				paginator="true" paginatorPosition="top"
+				rowsPerPageTemplate="10,20,30,40,50" rows="10"
+				styleClass="table table-bordered"
+				emptyMessage="No existen registros" rowIndexVar="item"
+				style="margin-bottom:0">
 
 							<p:column headerText="Id" sortBy="#{mo.cmodelo}">
 								<h:outputText value="#{mo.cmodelo}" />
@@ -52,7 +60,33 @@
 								<h:outputText value="#{mo.marca.nmarca}" />
 							</p:column>
 							
+							<p:column headerText="Operación" exportable="false">
+							<h:commandLink action="listPowner" value="Eliminar"
+							actionListener="#{modeloController.eliminar(mo)}" />
+							</p:column>
+							
+							<p:column headerText="Operación" exportable="false">
+
+							<h:commandLink value="Modificar"
+								action="#{modeloController.Modifpre(mo)}"
+								style="color:blue;" />
+							</p:column>
+							
 						</p:dataTable>
+						
+						
+						<h:commandLink>
+						<p:outputLabel value="ExportarExcel"></p:outputLabel>
+						<p:dataExporter type="xls" target="lstModelo" fileName="excelWeb"
+						pageOnly="false"></p:dataExporter>
+						</h:commandLink> 
+			
+						<br/>
+						<h:commandLink>
+						<p:outputLabel value="ExportarPdf"></p:outputLabel>
+						<p:dataExporter type="pdf" target="lstModelo" fileName="pdfWeb"></p:dataExporter>
+						</h:commandLink>
+						
 					</div>
 
 				</div>

@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Vehiculos:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Vehiculo</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="Cplaca" value="Id "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="Cplaca"
+				styleClass="form-control"
+				value="#{vehiculoController.vehiculo.cplaca}"
+				required="true" />
+				
+			<h:outputLabel for="Qllanta"
+				value="Numero llantas " styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="Qllanta"
+				styleClass="form-control"
+				value="#{vehiculoController.vehiculo.qllanta}"
+				maxlength="30" required="true" />
+			
+			<h:outputLabel for="date" value="Fecha de fabricacion"
+				styleClass="control-label" />
+
+			<p:calendar id="date" pattern="dd/MM/yyyy"
+				value="#{vehiculoController.vehiculo.dfabricacion}" showOn="button"
+				timeZone="UTC" required="true">
+			</p:calendar>
+			
+			<br />
+
+			<p:outputLabel for="cboModelo" value="Modelo" />
+
+			<p:selectOneMenu id="cboModelo"
+
+				value="#{vehiculoController.vehiculo.modelo}"
+
+				converter="omnifaces.SelectItemsConverter">
+
+				<f:selectItems value="#{vehiculoController.listaModelos}" var="mo"
+
+					itemLabel="#{mo.nmodelo}" itemValue="#{mo}" />
+			</p:selectOneMenu>
+
+			<br />
+
+			<p:outputLabel for="cboPropietario" value="Propietario" />
+
+			<p:selectOneMenu id="cboPropietario"
+
+				value="#{vehiculoController.vehiculo.propietario}"
+
+				converter="omnifaces.SelectItemsConverter">
+
+				<f:selectItems value="#{vehiculoController.listaPropietarios}" var="p"
+
+					itemLabel="#{p.cpropietario}" itemValue="#{p}" />
+			</p:selectOneMenu>
+
+			<br />
+			
+			<br />
+			<p:commandButton value="Grabar"
+				actionListener="#{vehiculoController.modificar()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listVehiculo?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listVehiculo?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+
+
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>

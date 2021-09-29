@@ -1,5 +1,6 @@
 package pe.edu.upc.Controller;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,12 @@ import pe.edu.upc.Service.IModeloService;
 
 @Named
 @RequestScoped
-public class ModeloController {
+public class ModeloController implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private IModeloService moService;
@@ -56,6 +62,53 @@ public class ModeloController {
 	public void listModelo() {
 		listaModelos = moService.list(); 
 	}
+	
+	public void eliminar(Modelo mo) {
+		try {
+			moService.eliminar(mo.getCmodelo());
+			listModelo();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.getMessage();
+		}
+	}
+	
+	public void clean() {
+		this.init();
+	}
+	
+	public void buscarpornombre() {
+		try {
+			if(modelo.getNmodelo().isEmpty()){
+				this.listModelo();
+			} else {
+				listaModelos = this.moService.buscarpornombre(this.getModelo());
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.getMessage();
+		}
+	}
+	
+	//modificar
+	
+	public void modificar() {
+		try {
+			moService.modificar(this.modelo);
+			this.listModelo();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.getMessage();
+		}
+	}
+	
+	public String Modifpre(Modelo mo) {
+		this.setModelo(mo);
+		return "modeloMod.xhtml";
+		
+	}
+	
+	
 
 	public Modelo getModelo() {
 		return modelo;

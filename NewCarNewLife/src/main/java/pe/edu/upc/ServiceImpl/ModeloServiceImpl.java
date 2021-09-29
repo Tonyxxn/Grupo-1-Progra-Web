@@ -28,6 +28,24 @@ public class ModeloServiceImpl implements IModeloService {
 		// TODO Auto-generated method stub
 		return moDao.list();
 	}
+
+	@Override
+	public void eliminar(int Cmodelo) {
+		// TODO Auto-generated method stub
+		moDao.eliminar(Cmodelo);
+	}
+
+	@Override
+	public void modificar(Modelo mo) {
+		// TODO Auto-generated method stub
+		moDao.modificar(mo);
+	}
+
+	@Override
+	public List<Modelo> buscarpornombre(Modelo mo) {
+		// TODO Auto-generated method stub
+		return moDao.buscarpornombre(mo);
+	}
 	
 	
 	

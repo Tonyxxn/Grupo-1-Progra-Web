@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"> <ui:composition
+	template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Especialidades:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Especialidades</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="ccategoria" value="Id "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="ccategoria"
+				styleClass="form-control"
+				value="#{categoriaController.categoria.ccategoria}" required="true" />
+			<h:outputLabel for="nameCategoria" value="Categoria "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="nameCategoria"
+				styleClass="form-control"
+				value="#{categoriaController.categoria.ncategoria}"
+				maxlength="30" required="true" />
+			<br />
+			
+			<h:outputLabel for="nGlosa" value="Glosa "
+				styleClass="control-label" />
+			
+			<p:inputText autocomplete="off" id="nglosa"
+				styleClass="form-control"
+				value="#{categoriaController.categoria.nglosa}"
+				maxlength="30" required="true" />
+			<br />
+			
+			<h:outputLabel for="Qvaloracion" value="valoracion "
+				styleClass="control-label" />
+			
+			<p:inputText autocomplete="off" id="qvaloracion"
+				styleClass="form-control"
+				value="#{categoriaController.categoria.qvaloracion}"
+				maxlength="30" required="true" />
+			<br />
+
+			<p:commandButton value="Grabar"
+				actionListener="#{categoriaController.modificar()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listCategoria?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listCategoria?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition> </html>

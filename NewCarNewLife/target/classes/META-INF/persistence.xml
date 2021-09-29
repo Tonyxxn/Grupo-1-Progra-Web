@@ -5,10 +5,20 @@
 	<class>pe.edu.upc.Entities.Marca</class>
 	<class>pe.edu.upc.Entities.Modelo</class>
 	<class>pe.edu.upc.Entities.Vehiculo</class>
+	<class>pe.edu.upc.Entities.Departamento</class>
+	<class>pe.edu.upc.Entities.Provincia</class>
+	<class>pe.edu.upc.Entities.Propietario</class>
+	<class>pe.edu.upc.Entities.Categoria</class>
+	<class>pe.edu.upc.Entities.Estado</class>
+	<class>pe.edu.upc.Entities.Rol</class>
+	<class>pe.edu.upc.Entities.User</class>
+	<class>pe.edu.upc.Entities.UserRol</class>
+	<class>pe.edu.upc.Entities.TelefonoPropietario</class>
+	<class>pe.edu.upc.Entities.Distrito</class>
 	<properties>
 			<property
 				name="javax.persistence.schema-generation.database.action"
-				value="update" />
+				value="create" />
 		</properties>
 	</persistence-unit>
 </persistence>

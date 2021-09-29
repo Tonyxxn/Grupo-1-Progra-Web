@@ -1,5 +1,6 @@
-package pe.edu.upc.Controller;
+	package pe.edu.upc.Controller;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,8 +14,13 @@ import pe.edu.upc.Service.IMarcaService;
 
 @Named
 @RequestScoped
-public class MarcaController {
+public class MarcaController implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Inject
 	private IMarcaService mService;
 
@@ -43,6 +49,51 @@ public class MarcaController {
 			// TODO: handle exception
 			System.out.println(e.getMessage());
 		}
+	}
+	
+	public void elminar(Marca ma) {
+		
+		try {
+			mService.eliminar(ma.getCmarca());
+			list();
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Esta en otra tabla no se puede eliminar"); 
+		}
+	}
+	
+	public void clean() {
+		this.init();
+	}
+	
+	public void buscarporNombre() {
+		try {
+			if (marca.getNmarca().isEmpty()) {
+				this.list();
+			} else {
+				listaMarcas = this.mService.buscarpornombre(this.getMarca());
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.getMessage();
+		}
+	}
+	
+	//modificar
+	public void modificar() {
+		try {
+			mService.modificar(this.marca);
+			this.list();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.getMessage();
+		}
+	}
+	
+	public String Modifpre(Marca ma) {
+		this.setMarca(ma);
+		return "marcaMod.xhtml";
+		
 	}
 	
 	public void list() {

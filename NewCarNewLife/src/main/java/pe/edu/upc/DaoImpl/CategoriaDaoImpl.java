@@ -44,4 +44,47 @@ public class CategoriaDaoImpl implements ICategoriaDao {
 		return lista;
 	}
 
+	@Transactional
+	@Override
+	public void eliminar(int ccategoria) {
+		// TODO Auto-generated method stub
+		Categoria cat = new Categoria();
+		try {
+			cat = em.getReference(Categoria.class, ccategoria);
+			em.remove(cat);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Categoria> findByNameCategoria(Categoria c) {
+		// TODO Auto-generated method stub
+		List<Categoria> lista = new ArrayList<Categoria>();
+		try {
+			Query q = em.createQuery("from Categoria c where c.ncategoria like ?1");
+			q.setParameter(1, "%" + c.getNcategoria() + "%");
+			lista = (List<Categoria>) q.getResultList();
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+		return lista;
+	}
+
+	@Transactional
+	@Override
+	public void modificar(Categoria cat) {
+		// TODO Auto-generated method stub
+		try {
+			em.merge(cat);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+		
+	}
+
 }

@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Marcas:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Marca</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="Cmarca" value="Id "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="Cmarca"
+				styleClass="form-control"
+				value="#{marcaController.marca.cmarca}"
+				required="true" />
+			<h:outputLabel for="Nmarca"
+				value="Nombre Marca " styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="Nmarca"
+				styleClass="form-control"
+				value="#{marcaController.marca.nmarca}"
+				maxlength="30" required="true" />
+
+			<br />
+			<p:commandButton value="Grabar"
+				actionListener="#{marcaController.modificar()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listMarca?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listMarca?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+
+
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>

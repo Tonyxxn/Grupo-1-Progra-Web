@@ -42,6 +42,51 @@ public class MarcaDaoImpl implements IMarcaDao{
 		}
 		return lista;
 	}
+
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Marca> buscapornombre(Marca ma) {
+		// TODO Auto-generated method stub
+		List<Marca> lista = new ArrayList<Marca>();
+		try {
+			Query q= em.createQuery("from Marca m where m.Nmarca like ?1");
+			q.setParameter(1, "%" + ma.getNmarca() + "%");
+			lista = (List<Marca>) q.getResultList();
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+		return lista;
+	}
+	
+	@Transactional
+	@Override
+	public void eliminar(int Cmarca) {
+		// TODO Auto-generated method stub
+		Marca mar= new Marca();
+		try {
+			mar=em.getReference(Marca.class, Cmarca);
+			em.remove(mar);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+			System.out.println("Error al eliminar");
+		}
+		
+	}
+
+	@Transactional
+	@Override
+	public void modificar(Marca ma) {
+		// TODO Auto-generated method stub
+		try {
+			em.merge(ma);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+	}
 	
 	
 	
